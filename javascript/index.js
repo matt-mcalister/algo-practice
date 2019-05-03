@@ -14,11 +14,31 @@
 // a simplified version of the plan. A better plan in this case is simply:
 // ["WEST"]
 
+
 function dirReduc(arr){
-  // ...
+  let opposites = {
+    "NORTH": "SOUTH",
+    "SOUTH": "NORTH",
+    "EAST": "WEST",
+    "WEST": "EAST"
+  }
+  if (arr.length === 1) {
+    return arr
+  }
+  let currentDir = arr.shift()
+  let remaining = dirReduc(arr)
+  if (opposites[currentDir] === remaining[0]) {
+    remaining.shift()
+  } else {
+    remaining = [currentDir, ...remaining]
+  }
+  return remaining
 }
 
 
-console.log('dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]) === ["WEST"]', dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]) === ["WEST"])
-console.log('dirReduc(["NORTH", "WEST", "SOUTH", "EAST"]), ["NORTH", "WEST", "SOUTH" === "EAST"]', dirReduc(["NORTH", "WEST", "SOUTH", "EAST"]), ["NORTH", "WEST", "SOUTH" === "EAST"])
-console.log('dirReduc(["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"]) === []', dirReduc(["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"]) === [])
+console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])) // should be ["WEST"]
+console.log("DONEZO");
+console.log(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"])) // should be ["NORTH", "WEST", "SOUTH", "EAST"]
+console.log("DONEZO");
+console.log(dirReduc(["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"])) // should be []
+console.log("DONEZO");
