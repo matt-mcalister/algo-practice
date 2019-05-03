@@ -1,44 +1,31 @@
-// … a man was given directions to go from one point to another.
-// The directions were "NORTH", "SOUTH", "WEST", "EAST".
-// Clearly "NORTH" and "SOUTH" are opposite, "WEST" and "EAST" too.
-// Going to one direction and coming back the opposite direction is a needless effort.
-// Since this is the wild west, with dreadfull weather and not much water,
-// it's important to save yourself some energy, otherwise you might die of thirst!
-// How I crossed the desert the smart way.
-//
-// The directions given to the man are, for example, the following:
-// ["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"].
 
-// You can immediatly see that going "NORTH" and then "SOUTH" is not reasonable,
-// better stay to the same place! So the task is to give to the man
-// a simplified version of the plan. A better plan in this case is simply:
-// ["WEST"]
+function hourglassSum(arr) {
+    let possibleIndexes = [0,1,2,3,6,7,8,9,12,13,14,15,18,19,20,21]
 
-
-function dirReduc(arr){
-  let opposites = {
-    "NORTH": "SOUTH",
-    "SOUTH": "NORTH",
-    "EAST": "WEST",
-    "WEST": "EAST"
-  }
-  if (arr.length === 1) {
-    return arr
-  }
-  let currentDir = arr.shift()
-  let remaining = dirReduc(arr)
-  if (opposites[currentDir] === remaining[0]) {
-    remaining.shift()
-  } else {
-    remaining = [currentDir, ...remaining]
-  }
-  return remaining
 }
 
+// -9 -9 -9  1 1 1
+//  0 -9  0  4 3 2
+// -9 -9 -9  1 2 3
+//  0  0  8  6 6 0
+//  0  0  0 -2 0 0
+//  0  0  1  2 4 0
 
-console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])) // should be ["WEST"]
-console.log("DONEZO");
-console.log(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"])) // should be ["NORTH", "WEST", "SOUTH", "EAST"]
-console.log("DONEZO");
-console.log(dirReduc(["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"])) // should be []
-console.log("DONEZO");
+// -63, -34, -9, 12,
+// -10, 0, 28, 23,
+// -27, -11, -2, 10,
+// 9, 17, 25, 18
+
+// 28 => 0 4 3
+      //   1
+      // 8 6 6
+
+
+// 1 1 1 0 0 0
+// 0 1 0 0 0 0
+// 1 1 1 0 0 0
+// 0 0 2 4 4 0
+// 0 0 0 2 0 0
+// 0 0 1 2 4 0
+
+// outputs 19
