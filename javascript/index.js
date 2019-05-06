@@ -14,7 +14,7 @@ function minimumBribes(q){
   }
 }
 
-function minBibeForLine(line) {
+function minBribeForLine(line) {
 
 }
 
