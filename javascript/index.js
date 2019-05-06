@@ -18,11 +18,6 @@ function minBribeForLine(line) {
   let bribes = 0
   let tooChaotic = line.find((el, i) => {
     let numBribes = el - (i + 1)
-    // console.log("********");
-    // console.log("ELEMENT: ", el);
-    // console.log("POSITION: ", i + 1);
-    // console.log("NUM BRIBES: ", numBribes);
-    // console.log("********");
     if (numBribes > 2){
       return true
     } else {
@@ -35,11 +30,19 @@ function minBribeForLine(line) {
   return tooChaotic ? "Too chaotic" : bribes
 }
 
-console.log(minBribeForLine([2,1,5,3,4])) // 3
-console.log(minBribeForLine([2,5,1,3,4])) // Too chaotic
-console.log(minBribeForLine([5, 1, 2, 3, 7, 8, 6, 4])) // Too chaotic
-console.log(minBribeForLine([1, 2, 5, 3, 7, 8, 6, 4])) // 7
-console.log(minBribeForLine([1, 2, 5, 3, 4, 7, 8, 6])) // 4
+// console.log(minBribeForLine([2,1,5,3,4])) // 3
+// console.log(minBribeForLine([2,5,1,3,4])) // Too chaotic
+// console.log(minBribeForLine([5, 1, 2, 3, 7, 8, 6, 4])) // Too chaotic
+// console.log(minBribeForLine([1, 2, 5, 3, 7, 8, 6, 4])) // 7
+// console.log(minBribeForLine([1, 2, 5, 3, 4, 7, 8, 6])) // 4
+minimumBribes([
+    2,
+    5,
+    2, 1, 5, 3, 4,
+    5,
+    2, 5, 1, 3, 4,
+  ])
+
 
 // ex:
 //   [
