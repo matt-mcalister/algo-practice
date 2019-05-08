@@ -100936,49 +100936,77 @@ let otherTest = [
   998
 ]
 // console.log("BANANA");
-function minimumBribes(line) {
-  let counter = 0
+// function minimumBribes(line) {
+//   let counter = 0
+//   let bribes = 0
+//   let tooChaotic = line.find((el, i) => {
+//     let positionsMoved = el - (i + 1)
+//     // if (positionsMoved > 2){
+//     //   return true
+//     // } else {
+//     //   if (positionsMoved < 0){
+//         // bribes += Math.abs(positionsMoved)
+//         console.log("*********");
+//         console.log("ELEMENT: ", el);
+//         console.log("POTIONS MOVED: ", positionsMoved);
+//         console.log("*********");
+//       // } // else {
+//         // if (line[i+1] < el) {
+//         //   bribes += 1
+//         //   counter += positionsMoved
+//         // } else if (line[i+2] < el){
+//         //   counter += positionsMoved
+//         //   bribes += 2
+//         //   console.log("******");
+//         //   console.log(line[i+1] - el);
+//         //   console.log(line[i+2] - el);
+//         //   console.log("******");
+//         // }
+//       //   counter++
+//       //   // console.log("********");
+//       // }
+//       return false
+//     // }
+//   })
+//   // console.log("COUNTER: ", counter);
+//   console.log(tooChaotic ? "Too chaotic" : bribes)
+//   // console.log("DIFFERENCE: ", 966 - bribes);
+// }
+
+
+function minimumBribes(q){
   let bribes = 0
-  let tooChaotic = line.find((el, i) => {
-    let positionsMoved = el - (i + 1)
-    if (positionsMoved > 2){
+  let expected = Object.assign({}, Array.from(Array(q.length+1), (x,i) => i))
+  delete expected[0]
+  function getPositionByValue(value) {
+    return Object.keys(expected).find(position => expected[position] === value);
+  }
+  let tooChaotic = q.find((el,i) => {
+    let position = i+1
+    let positionsMoved = getPositionByValue(el) - position
+    if (positionsMoved > 2) {
       return true
     } else {
-      if (positionsMoved < 0){
-        bribes += Math.abs(positionsMoved)
-        console.log("*********");
-        console.log("ELEMENT: ", el);
-        console.log("POTIONS MOVED: ", positionsMoved);
-        console.log("*********");
-      } // else {
-        // if (line[i+1] < el) {
-        //   bribes += 1
-        //   counter += positionsMoved
-        // } else if (line[i+2] < el){
-        //   counter += positionsMoved
-        //   bribes += 2
-        //   console.log("******");
-        //   console.log(line[i+1] - el);
-        //   console.log(line[i+2] - el);
-        //   console.log("******");
-        // }
-      //   counter++
-      //   // console.log("********");
-      // }
+      if (positionsMoved > 0) {
+        bribes += positionsMoved
+        for (var i = positionsMoved; i > 0; i--) {
+          expected[position + i] = expected[position + i-1]
+        }
+      }
+      expected[position] = el
       return false
     }
   })
-  // console.log("COUNTER: ", counter);
+
   console.log(tooChaotic ? "Too chaotic" : bribes)
-  // console.log("DIFFERENCE: ", 966 - bribes);
 }
 
-// minimumBribes(test) // 115173
+minimumBribes(test) // 115173
 // minimumBribes(otherTest) // 966
 // minimumBribes([2,1,5,3,4]) // 3
 // minimumBribes([2,5,1,3,4]) // Too chaotic
 // minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]) // Too chaotic
-minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]) // 7
+// minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]) // 7
 // minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]) // 4
 // minimumBribes([
 //     2,
