@@ -101003,12 +101003,12 @@ function minimumBribes(q){
   console.log(tooChaotic ? "Too chaotic" : bribes)
 }
 
-// minimumBribes(test) // 115173
+minimumBribes(test) // 115173
 // minimumBribes(otherTest) // 966
 // minimumBribes([2,1,5,3,4]) // 3
 // minimumBribes([2,5,1,3,4]) // Too chaotic
 // minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]) // Too chaotic
-minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]) // 7
+// minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]) // 7
 // minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]) // 4
 // minimumBribes([
 //     2,
