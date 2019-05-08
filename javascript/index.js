@@ -100976,24 +100976,26 @@ let otherTest = [
 
 function minimumBribes(q){
   let bribes = 0
-  let expected = Object.assign({}, Array.from(Array(q.length+1), (x,i) => i))
-  delete expected[0]
-  function getPositionByValue(value) {
-    return Object.keys(expected).find(position => expected[position] === value);
-  }
+  let byPosition = Object.assign({}, Array.from(Array(q.length+1), (x,i) => i))
+  delete byPosition[0]
+  let byValue = {...byPosition}
   let tooChaotic = q.find((el,i) => {
     let position = i+1
-    let positionsMoved = getPositionByValue(el) - position
+    let positionsMoved = byValue[el] - position
     if (positionsMoved > 2) {
       return true
     } else {
       if (positionsMoved > 0) {
         bribes += positionsMoved
         for (var i = positionsMoved; i > 0; i--) {
-          expected[position + i] = expected[position + i-1]
+          let newPos = position + i
+          let newVal = byPosition[position + i-1]
+          byPosition[newPos] = newVal
+          byValue[newVal] = newPos
         }
       }
-      expected[position] = el
+      byPosition[position] = el
+      byValue[el] = position
       return false
     }
   })
@@ -101001,12 +101003,12 @@ function minimumBribes(q){
   console.log(tooChaotic ? "Too chaotic" : bribes)
 }
 
-minimumBribes(test) // 115173
+// minimumBribes(test) // 115173
 // minimumBribes(otherTest) // 966
 // minimumBribes([2,1,5,3,4]) // 3
 // minimumBribes([2,5,1,3,4]) // Too chaotic
 // minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]) // Too chaotic
-// minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]) // 7
+minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]) // 7
 // minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]) // 4
 // minimumBribes([
 //     2,
