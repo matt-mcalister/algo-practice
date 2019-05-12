@@ -1,5 +1,8 @@
 function humanReadable(seconds) {
-  // TODO
+  let h = `${parseInt(seconds/3600, 10)}`
+  let min = `${parseInt(seconds%3600/60, 10)}`
+  let sec = `${parseInt(seconds%3600%60, 10)}`
+  return [h,min,sec].map(el => el.length === 1 ? `0${el}` : el ).join(":")
 }
 
 // seconds to HH:MM:SS
