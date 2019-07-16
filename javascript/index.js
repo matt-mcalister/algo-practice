@@ -1,16 +1,9 @@
-// Given string and int size, find if the string is unique up to the length specified in size.
-function uniqChars(str){
-  let dict = {}
-  for (var i = 0; i < str.length; i++) {
-    dict[str[i]] = dict[str[i]] || 0
-    dict[str[i]]++
-    if (dict[str[i]] > 1){
-      return false
-    }
-  }
-  return true
+function alternatingCharacters(str){
+
 }
 
-
-console.log(uniqChars("abcd10jk") === true)
-console.log(uniqChars("hutg9mnd!nk9") === false)
+console.log(alternatingCharacters("AAAA"))
+console.log(alternatingCharacters("BBBBB"))
+console.log(alternatingCharacters("ABABABAB"))
+console.log(alternatingCharacters("BABABA"))
+console.log(alternatingCharacters("AAABBB"))
