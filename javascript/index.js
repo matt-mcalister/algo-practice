@@ -1,12 +1,20 @@
 function maximumSubArray(arr){
-  let max = arr[0]
-  let newSum = arr[0]
-  for (let leftBound = 0; leftBound < arr.length; leftBound++) {
-    for (let rightBound = leftBound+1; rightBound <= arr.length; rightBound++) {
-      newSum = arr.slice(leftBound, rightBound).reduce(((acc, el) => acc + el), 0)
-      max = newSum > max ? newSum : max
+  let max = -Infinity
+
+  let currentSum = 0
+
+  arr.forEach((el, idx) => {
+    currentSum += el
+
+    if (currentSum > max) {
+      max = currentSum
     }
-  }
+
+    if (currentSum < 0){
+      currentSum = 0
+    }
+
+  })
   return max
 }
 
